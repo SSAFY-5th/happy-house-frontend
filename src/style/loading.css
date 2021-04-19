@@ -7,7 +7,7 @@
 
   z-index: 2;
 
-  display: flex !important;
+  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -76,5 +76,5 @@
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
