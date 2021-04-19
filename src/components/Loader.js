@@ -21,9 +21,14 @@ export default class Loader {
 
   render() {
     if (this.isLoading) {
-      this.loaderWrapper.style.display = 'block';
+      this.loaderWrapper.removeAttribute(
+        'style',
+      );
     } else {
-      this.loaderWrapper.style.display = 'none';
+      this.loaderWrapper.setAttribute(
+        'style',
+        'display: none !important;'
+      );
     }
   }
 }

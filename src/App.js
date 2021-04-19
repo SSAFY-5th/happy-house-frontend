@@ -6,7 +6,7 @@ export default class App {
     this.$target = $target;
     this.isLoading = false;
 
-    this.loading = new Loader({ $target });
+    this.loading = new Loader({ $target, isLoading: false });
 
     this.children = [new Header({ $target })];
     this.render();
