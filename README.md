@@ -305,7 +305,56 @@ select * from users;
 		return userDto;
 	}
 ```
-#### 8. 추가되어야 할 Endpoint
+#### 8. 마이페이지
+- javax.servlet.jsp.PageContext 클래스를 상속해 웹 컨테이너가 JSP 실행시 자동으로 생성해서 제공하는 내장 객체를 사용해서 구현
+
+```jstl
+<c:set var="root" value="${pageContext.request.contextPath}" />
+```
+
+```jsp
+<h2 class="title">회원 정보 확인</h2>
+							<form action="#" class="form-horizontal" id="form">
+								<div class="form-group has-feedback row">
+									<label for="inputName"
+										class="col-md-3 control-label text-md-right col-form-label">아이디
+										<span class="text-danger small">*</span>
+									</label>
+									<div class="col-md-8">${userinfo.id}</div>
+								</div>
+								<div class="form-group has-feedback row">
+									<label for="inputLastName"
+										class="col-md-3 control-label text-md-right col-form-label">비밀번호
+										<span class="text-danger small">*</span>
+									</label>
+									<div class="col-md-8">${userinfo.pwd}</div>
+								</div>
+								<div class="form-group has-feedback row">
+									<label for="inputUserName"
+										class="col-md-3 control-label text-md-right col-form-label">이름
+										<span class="text-danger small">*</span>
+									</label>
+									<div class="col-md-8">${userinfo.name}</div>
+								</div>
+								<div class="form-group has-feedback row">
+									<label for="inputEmail"
+										class="col-md-3 control-label text-md-right col-form-label">주소
+										<span class="text-danger small">*</span>
+									</label>
+									<div class="col-md-8">${userinfo.addr}</div>
+								</div>
+								<div class="form-group has-feedback row">
+									<label for="inputPassword"
+										class="col-md-3 control-label text-md-right col-form-label">전화번호
+										<span class="text-danger small">*</span>
+									</label>
+									<div class="col-md-8">${userinfo.phone}</div>
+								</div>
+								</from>
+```
+ 
+ 
+#### 9. 추가되어야 할 Endpoint
 
 - WIP
 
