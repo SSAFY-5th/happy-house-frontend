@@ -6,6 +6,8 @@
 
 현재까지 해피하우스 서버 및 클라이언트 개발 사항에 대해서 공유합니다.
 
+## 해피하우스 FE
+
 클라이언트의 경우 포트폴리오로써 가치있도록 [2020 Dev-Matching: FE](https://programmers.co.kr/skill_check_assignments/4) 요구사항을 반영하여 해피하우스 클라이언트 코드를 개선하였습니다.
 
 <details>
@@ -81,19 +83,22 @@
 </div>
 </details>
 
----
+### 결과물
 
-## API 정리
+https://user-images.githubusercontent.com/16266103/115385572-3f006180-a213-11eb-8e1e-0e59e5e5fcf5.mov
+
+## 해피하우스 BE
+### API 정리
 
 기존 클라이언트가 JSP 기반으로 되어있기 때문에 자체적으로 query param을 생성하여 요청하는 url을 정리하였습니다. 회원가입, 로그인 등의 상황에서는 백엔드에 REST API가 도입되는 시점에 가능하게 될 것 같습니다. (리팩토링 하기 전 JSP 기반의 클라이언트에서는 회원가입 및 로그인이 가능합니다)
 
-### 1. 시 조회
+#### 1. 시 조회
 
-#### URL
+##### URL
 
 `GET http://localhost:8080/hh/map?act=sido`
 
-#### Response
+##### Response
 
 ```json
 [
@@ -109,17 +114,17 @@
 ]
 ```
 
-### 2. 시에따른 구 조회
+#### 2. 시에따른 구 조회
 
-#### URL
+##### URL
 
 `GET http://localhost:8080/hh/map?act=gugun&sido=${sido}`
 
-#### Parameter
+##### Parameter
 
 - sido: 시 코드
 
-#### Response
+##### Response
 
 ```json
 [
@@ -135,17 +140,17 @@
 ]
 ```
 
-### 3. 구에따른 동 조회
+#### 3. 구에따른 동 조회
 
-#### URL
+##### URL
 
 `GET http://localhost:8080/hh/map?act=dong&gugun=${gugun}`
 
-#### Parameter
+##### Parameter
 
 - gugun: 구 코드
 
-#### Response
+##### Response
 
 ```json
 [
@@ -161,17 +166,17 @@
 ]
 ```
 
-### 4. 동별 아파트 조회
+#### 4. 동별 아파트 조회
 
-#### URL
+##### URL
 
 `GET http://localhost:8080/hh/map?act=apt&dong=${dong}`
 
-#### Parameter
+##### Parameter
 
 - dong: 동 이름
 
-#### Response
+##### Response
 
 ```json
 [
@@ -197,9 +202,8 @@
 ]
 ```
 
-### 5. 추가되어야 할 Endpoint
+#### 5. 추가되어야 할 Endpoint
 
 - WIP
 
 
-### 해피하우스 Backend
