@@ -6,7 +6,31 @@ export default class Map {
     this.mapWrapper = document.createElement('section');
 
     $target.appendChild(this.mapWrapper);
+
+    this.fetchCity();
   }
+
+  fetchCity = async () => {
+    try {
+      const data = await api.getCity();
+      const sidoSelect = document.getElementById('sido');
+
+      if (data.length > 0) {
+        sidoSelect.innerHTML = '';
+
+        const len = getStringMaxLen(data, 'sido_name');
+
+        data.forEach((each) => {
+          const myOption = document.createElement('option');
+          myOption.text = '# ' + '＿'.repeat(len - [...each.sido_name].length) + each.sido_name;
+          myOption.value = each.sido_code;
+          sidoSelect.appendChild(myOption);
+        });
+      }
+    } catch (e) {
+      console.warn(e);
+    }
+  };
 
   render = () => {
     const template = `
