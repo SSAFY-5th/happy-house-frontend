@@ -306,11 +306,6 @@ select * from users;
 	}
 ```
 #### 8. 마이페이지
-- javax.servlet.jsp.PageContext 클래스를 상속해 웹 컨테이너가 JSP 실행시 자동으로 생성해서 제공하는 내장 객체를 사용해서 구현
-
-```jsp
-<c:set var="root" value="${pageContext.request.contextPath}" />
-```
 
 ```jsp
 <h2 class="title">회원 정보 확인</h2>
