@@ -206,7 +206,7 @@ https://user-images.githubusercontent.com/16266103/115386196-0ca33400-a214-11eb-
 ```json
 create database happyhouse;
 use happyhouse;
-drop table users;
+
 create table users(
 id varchar(20) primary key,
 pwd varchar(20) not null,                   
@@ -221,6 +221,43 @@ select * from users;
 ```
 
 #### 6. 회원가입
+
+##### URL
+`POST http://localhost:8080/hh/register.jsp`
+
+##### Parameter
+
+- id: 아이디
+- pwd: 비밀번호
+- name: 이름
+- addr: 주소
+- phone: 전화번호
+- email: 이메일
+
+##### Response
+````
+@Override
+	public void register(UserDto userDto) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBUtil.getConnection();
+			StringBuilder insertMember = new StringBuilder();
+			insertMember.append("insert into users");
+			insertMember.append(" values(?, ?, ?, ?, ?, ?)");
+			pstmt = conn.prepareStatement(insertMember.toString());
+			pstmt.setString(1, userDto.getId());
+			pstmt.setString(2, userDto.getPwd());
+			pstmt.setString(3, userDto.getName());
+			pstmt.setString(4, userDto.getAddr());
+			pstmt.setString(5, userDto.getPhone());
+			pstmt.setString(6, userDto.getEmail());
+			pstmt.executeUpdate();
+		} finally {
+			DBUtil.close(pstmt, conn);
+		}
+	}
+  ````
 
 #### 7. 추가되어야 할 Endpoint
 
