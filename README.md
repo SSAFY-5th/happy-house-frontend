@@ -325,6 +325,7 @@ try {
 		}
 ```
 
+- jsp 
 ```jsp
 <h2 class="title">회원 정보 확인</h2>
 <form action="#" class="form-horizontal" id="form">
