@@ -216,7 +216,8 @@ phone varchar(15),
 email varchar(50)
 );
 
-insert into users(id, pwd, name, addr, phone, email) values('ssafy', '1234', '김싸피', '서울시 동작구', '010-1234-5677', 'ssafy@naver.com');
+insert into users(id, pwd, name, addr, phone, email) 
+	values('ssafy', '1234', '김싸피', '서울시 동작구', '010-1234-5677', 'ssafy@naver.com');
 select * from users;
 ```
 
@@ -259,9 +260,52 @@ select * from users;
 	}
   ```
 
-#### 7. 추가되어야 할 Endpoint
+#### 7. 로그인
+##### URL
+`POST http://localhost:8080/hh/index.jsp`
 
-#### 7. 추가되어야 할 Endpoint
+##### Parameter
+
+- id: 아이디
+- pwd: 비밀번호
+
+##### Response
+```java
+@Override
+	public UserDto login(String id, String pwd) throws SQLException {
+		UserDto userDto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from users");
+			sql.append(" where id = ? and pwd = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				userDto = new UserDto();
+				userDto.setId(rs.getString("id"));
+				userDto.setPwd(rs.getString("pwd"));
+				userDto.setName(rs.getString("name"));
+				userDto.setAddr(rs.getString("addr"));
+				userDto.setPhone(rs.getString("phone"));
+				userDto.setEmail(rs.getString("email"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			userDto = null;
+		} finally {
+			DBUtil.close(rs, pstmt, conn);
+		}
+		return userDto;
+	}
+```
+#### 8. 추가되어야 할 Endpoint
 
 - WIP
 
