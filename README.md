@@ -238,27 +238,27 @@ select * from users;
 ##### Response
 ```java
 @Override
-	public void register(UserDto userDto) throws SQLException {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			conn = DBUtil.getConnection();
-			StringBuilder insertMember = new StringBuilder();
-			insertMember.append("insert into users");
-			insertMember.append(" values(?, ?, ?, ?, ?, ?)");
-			pstmt = conn.prepareStatement(insertMember.toString());
-			pstmt.setString(1, userDto.getId());
-			pstmt.setString(2, userDto.getPwd());
-			pstmt.setString(3, userDto.getName());
-			pstmt.setString(4, userDto.getAddr());
-			pstmt.setString(5, userDto.getPhone());
-			pstmt.setString(6, userDto.getEmail());
-			pstmt.executeUpdate();
-		} finally {
-			DBUtil.close(pstmt, conn);
-		}
+public void register(UserDto userDto) throws SQLException {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	try {
+		conn = DBUtil.getConnection();
+		StringBuilder insertMember = new StringBuilder();
+		insertMember.append("insert into users");
+		insertMember.append(" values(?, ?, ?, ?, ?, ?)");
+		pstmt = conn.prepareStatement(insertMember.toString());
+		pstmt.setString(1, userDto.getId());
+		pstmt.setString(2, userDto.getPwd());
+		pstmt.setString(3, userDto.getName());
+		pstmt.setString(4, userDto.getAddr());
+		pstmt.setString(5, userDto.getPhone());
+		pstmt.setString(6, userDto.getEmail());
+		pstmt.executeUpdate();
+	} finally {
+		DBUtil.close(pstmt, conn);
 	}
-  ```
+}
+```
 
 #### 7. 로그인
 ##### URL
@@ -272,57 +272,57 @@ select * from users;
 ##### Response
 ```java
 @Override
-	public UserDto login(String id, String pwd) throws SQLException {
-		UserDto userDto = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = DBUtil.getConnection();
-			StringBuilder sql = new StringBuilder();
-			sql.append("select * from users");
-			sql.append(" where id = ? and pwd = ?");
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, id);
-			pstmt.setString(2, pwd);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				userDto = new UserDto();
-				userDto.setId(rs.getString("id"));
-				userDto.setPwd(rs.getString("pwd"));
-				userDto.setName(rs.getString("name"));
-				userDto.setAddr(rs.getString("addr"));
-				userDto.setPhone(rs.getString("phone"));
-				userDto.setEmail(rs.getString("email"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			userDto = null;
-		} finally {
-			DBUtil.close(rs, pstmt, conn);
+public UserDto login(String id, String pwd) throws SQLException {
+	UserDto userDto = null;
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		conn = DBUtil.getConnection();
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * from users");
+		sql.append(" where id = ? and pwd = ?");
+		pstmt = conn.prepareStatement(sql.toString());
+		pstmt.setString(1, id);
+		pstmt.setString(2, pwd);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			userDto = new UserDto();
+			userDto.setId(rs.getString("id"));
+			userDto.setPwd(rs.getString("pwd"));
+			userDto.setName(rs.getString("name"));
+			userDto.setAddr(rs.getString("addr"));
+			userDto.setPhone(rs.getString("phone"));
+			userDto.setEmail(rs.getString("email"));
 		}
-		return userDto;
+	} catch (SQLException e) {
+		e.printStackTrace();
+		userDto = null;
+	} finally {
+		DBUtil.close(rs, pstmt, conn);
 	}
+	return userDto;
+}
 ```
 #### 8. 마이페이지
 - javax.servlet.http.HttpSession 클래스를 상속하여 session 객체를 생성하고 로그인시, 저장한 사용자 정보인 userinfo를 사용하여 구현
 ```java
 try {
-			UserDto userDto = loginService.login(id, pwd);
-			if (userDto != null) {
-				//session 설정
-				HttpSession session = request.getSession();
-				session.setAttribute("userinfo", userDto);
-			} else {
-				request.setAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인해 주세요.");
-				path = "/error/error.jsp";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("msg", "로그인 중 문제가 발생했습니다.");
-			path = "/error/error.jsp";
-		}
+	UserDto userDto = loginService.login(id, pwd);
+	if (userDto != null) {
+	// session 설정
+	HttpSession session = request.getSession();
+	session.setAttribute("userinfo", userDto);
+	} else {
+		request.setAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인해 주세요.");
+		path = "/error/error.jsp";
+	}
+} catch (Exception e) {
+	e.printStackTrace();
+	request.setAttribute("msg", "로그인 중 문제가 발생했습니다.");
+	path = "/error/error.jsp";
+}
 ```
 
 - jsp 
