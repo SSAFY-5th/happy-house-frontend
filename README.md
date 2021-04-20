@@ -306,6 +306,7 @@ select * from users;
 	}
 ```
 #### 8. 마이페이지
+- javax.servlet.http.HttpSession 클래스를 상속하여 session 객체를 생성하고 사용자 정보를 저장 userinfo를 사용하여 구현
 
 ```jsp
 <h2 class="title">회원 정보 확인</h2>
