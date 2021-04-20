@@ -202,7 +202,11 @@ https://user-images.githubusercontent.com/16266103/115386196-0ca33400-a214-11eb-
 ]
 ```
 
-#### 5. 추가되어야 할 Endpoint
+#### 5. 회원가입
+
+#### 6. 추가되어야 할 Endpoint
+
+#### 7. 추가되어야 할 Endpoint
 
 - WIP
 
