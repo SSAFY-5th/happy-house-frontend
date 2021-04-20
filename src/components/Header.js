@@ -4,8 +4,19 @@ export default class Header {
 
     $target.appendChild(this.headerWrapper);
     this.render();
+    this.handleClickToSearch();
   }
 
+  handleClickToSearch = () => {
+    const button = document.querySelector('#toSearch');
+    button.addEventListener('click', () => {
+      window.scrollTo({
+        top: document.getElementById('wrapper').clientHeight - 58,
+        left: 0,
+        behavior: 'smooth',
+      });
+    });
+  };
   render = () => {
     const template = `
         <div class="header-container">
