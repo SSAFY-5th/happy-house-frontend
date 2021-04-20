@@ -14,21 +14,16 @@ export default class Loader {
     this.render();
   }
 
-  setState(status) {
+  setState = (status) => {
     this.isLoading = status;
     this.render();
-  }
+  };
 
-  render() {
+  render = () => {
     if (this.isLoading) {
-      this.loaderWrapper.removeAttribute(
-        'style',
-      );
+      this.loaderWrapper.removeAttribute('style');
     } else {
-      this.loaderWrapper.setAttribute(
-        'style',
-        'display: none !important;'
-      );
+      this.loaderWrapper.setAttribute('style', 'display: none !important;');
     }
-  }
+  };
 }
