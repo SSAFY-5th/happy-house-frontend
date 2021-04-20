@@ -3,6 +3,7 @@ export default class Header {
     this.headerWrapper = document.createElement('nav');
 
     $target.appendChild(this.headerWrapper);
+    this.render();
   }
 
   render = () => {

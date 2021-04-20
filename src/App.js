@@ -14,16 +14,14 @@ export default class App {
     this.isLoading = false;
 
     this.loading = new Loader({ $target, isLoading: false });
-
-    this.children = [
-      new Header({ $target }),
-      new Section({ $target }),
-      new Map({ $target }),
-      new Footer({ $target }),
-    ];
-    this.render();
+    this.header = new Header({ $target });
+    this.section = new Section({ $target });
+    this.map = new Map({ $target, handleLoading: this.handleLoading });
+    this.info = new Info({ $target });
+    this.footer = new Footer({ $target });
 
     this.map = new google.maps.Map(document.getElementById('map'), opt);
+
     this.initMap();
 
     this.handleClickToSearch();

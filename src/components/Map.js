@@ -7,6 +7,7 @@ export default class Map {
 
     $target.appendChild(this.mapWrapper);
 
+    this.render();
     this.fetchCity();
   }
 

@@ -3,6 +3,8 @@ export default class Section {
     this.sectionWrapper = document.createElement('section');
 
     $target.appendChild(this.sectionWrapper);
+
+    this.render();
     this.scroll();
   }
 
