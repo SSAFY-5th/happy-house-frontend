@@ -1,6 +1,7 @@
 import Header from './components/Header.js';
-import Loader from './components/Loader.js';
 import Section from './components/Section.js';
+import Footer from './components/Footer.js';
+import Loader from './components/Loader.js';
 
 export default class App {
   constructor($target) {
@@ -12,6 +13,7 @@ export default class App {
     this.children = [
       new Header({ $target }),
       new Section({ $target }),
+      new Footer({ $target }),
     ];
     this.render();
     this.handleClickToSearch();
