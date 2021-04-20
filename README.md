@@ -203,7 +203,7 @@ https://user-images.githubusercontent.com/16266103/115386196-0ca33400-a214-11eb-
 ```
 
 #### 5. Database 설계
-```json
+```sql
 create database happyhouse;
 use happyhouse;
 
