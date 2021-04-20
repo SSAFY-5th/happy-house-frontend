@@ -235,7 +235,7 @@ select * from users;
 - email: 이메일
 
 ##### Response
-````
+```java
 @Override
 	public void register(UserDto userDto) throws SQLException {
 		Connection conn = null;
@@ -257,7 +257,7 @@ select * from users;
 			DBUtil.close(pstmt, conn);
 		}
 	}
-  ````
+  ```
 
 #### 7. 추가되어야 할 Endpoint
 
