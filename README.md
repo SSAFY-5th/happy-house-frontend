@@ -2,7 +2,7 @@
 
 > SSAFY 해피하우스 UI 중간 발표: 강윤정, 이용재
 
-## 개요
+## Summary
 
 현재까지 해피하우스 서버 및 클라이언트 개발 사항에 대해서 공유합니다.
 
@@ -84,8 +84,8 @@
 </details>
 
 ### 결과물
+https://user-images.githubusercontent.com/16266103/115386196-0ca33400-a214-11eb-8240-c327f758ef1d.mov
 
-https://user-images.githubusercontent.com/16266103/115385572-3f006180-a213-11eb-8e1e-0e59e5e5fcf5.mov
 
 ## 해피하우스 BE
 ### API 정리
