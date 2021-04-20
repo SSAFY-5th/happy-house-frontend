@@ -1,5 +1,6 @@
 import Header from './components/Header.js';
 import Section from './components/Section.js';
+import Map from './components/Map.js';
 import Footer from './components/Footer.js';
 import Loader from './components/Loader.js';
 
@@ -13,15 +14,55 @@ export default class App {
     this.children = [
       new Header({ $target }),
       new Section({ $target }),
+      new Map({ $target }),
       new Footer({ $target }),
     ];
     this.render();
+
+    this.map = new google.maps.Map(document.getElementById('map'), opt);
+    this.initMap();
+
     this.handleClickToSearch();
   }
+
+  initMap = () => {
+    const infowindow = new google.maps.InfoWindow();
+
+    for (let i = 0; i < locations.length; i++) {
+      const marker = new google.maps.Marker({
+        id: i,
+        title: locations[i][0],
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        icon: './src/assets/marker.svg',
+        map: this.map,
+      });
+
+      google.maps.event.addListener(
+        marker,
+        'click',
+        ((marker, i) => {
+          return () => {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(this.map, marker);
+          };
+        })(marker, i)
+      );
+
+      if (marker) {
+        marker.addListener('click', () => {
+          console.log(marker.title);
+          this.map.setZoom(15);
+          this.map.panTo(marker.getPosition());
+        });
+      }
+    }
+  };
 
   handleLoading = (loadStatus) => {
     this.isLoading = loadStatus;
     this.loading.setState(this.isLoading);
+  };
+
   handleClickToSearch = () => {
     const button = document.querySelector('#toSearch');
     button.addEventListener('click', () => {
