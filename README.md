@@ -306,7 +306,24 @@ select * from users;
 	}
 ```
 #### 8. 마이페이지
-- javax.servlet.http.HttpSession 클래스를 상속하여 session 객체를 생성하고 사용자 정보를 저장 userinfo를 사용하여 구현
+- javax.servlet.http.HttpSession 클래스를 상속하여 session 객체를 생성하고 로그인시, 저장한 사용자 정보인 userinfo를 사용하여 구현
+```java
+try {
+			UserDto userDto = loginService.login(id, pwd);
+			if (userDto != null) {
+				//session 설정
+				HttpSession session = request.getSession();
+				session.setAttribute("userinfo", userDto);
+			} else {
+				request.setAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인해 주세요.");
+				path = "/error/error.jsp";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("msg", "로그인 중 문제가 발생했습니다.");
+			path = "/error/error.jsp";
+		}
+```
 
 ```jsp
 <h2 class="title">회원 정보 확인</h2>
