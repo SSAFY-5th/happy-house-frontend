@@ -202,9 +202,25 @@ https://user-images.githubusercontent.com/16266103/115386196-0ca33400-a214-11eb-
 ]
 ```
 
-#### 5. 회원가입
+#### 5. Database 설계
+use happyhouse;
+drop table users;
+create table users(
+id varchar(20) primary key,
+pwd varchar(20) not null,                   
+name varchar(16) not null,
+addr varchar(50),
+phone varchar(15),
+email varchar(50)
+);
 
-#### 6. 추가되어야 할 Endpoint
+insert into users(id, pwd, name, addr, phone, email) values('ssafy', '1234', '김싸피', '서울시 동작구', '010-1234-5677', 'ssafy@naver.com');
+select * from users;
+
+
+#### 6. 회원가입
+
+#### 7. 추가되어야 할 Endpoint
 
 #### 7. 추가되어야 할 Endpoint
 
