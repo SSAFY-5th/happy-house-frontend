@@ -1,6 +1,7 @@
 import Header from './components/Header.js';
 import Section from './components/Section.js';
 import Map from './components/Map.js';
+import Info from './components/Info.js';
 import Footer from './components/Footer.js';
 import Loader from './components/Loader.js';
 import api from './api/api.js';
