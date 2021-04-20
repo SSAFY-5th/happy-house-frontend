@@ -203,6 +203,8 @@ https://user-images.githubusercontent.com/16266103/115386196-0ca33400-a214-11eb-
 ```
 
 #### 5. Database 설계
+```json
+create database happyhouse;
 use happyhouse;
 drop table users;
 create table users(
@@ -216,7 +218,7 @@ email varchar(50)
 
 insert into users(id, pwd, name, addr, phone, email) values('ssafy', '1234', '김싸피', '서울시 동작구', '010-1234-5677', 'ssafy@naver.com');
 select * from users;
-
+```
 
 #### 6. 회원가입
 
