@@ -1,5 +1,6 @@
 import Header from './components/Header.js';
 import Loader from './components/Loader.js';
+import Section from './components/Section.js';
 
 export default class App {
   constructor($target) {
@@ -8,16 +9,19 @@ export default class App {
 
     this.loading = new Loader({ $target, isLoading: false });
 
-    this.children = [new Header({ $target })];
+    this.children = [
+      new Header({ $target }),
+      new Section({ $target }),
+    ];
     this.render();
   }
 
-  handleLoading(loadStatus) {
+  handleLoading = (loadStatus) => {
     this.isLoading = loadStatus;
     this.loading.setState(this.isLoading);
   }
 
-  render() {
+  render = () => {
     this.children.forEach((child) => child.render());
-  }
+  };
 }
